@@ -29,7 +29,7 @@ function App() {
       .then(response => response.json())
       .then(json=>{
         json.map((item:any,index:number)=>{
-          externalCountries.push({id:index, value: item.name.official,symbol:item.flags.svg})
+          externalCountries.push({id:index, value: item.name.official,symbol:item.flags.svg, prefix:item.idd.root+item.idd.suffixes})
         })
       });
       let externalCurrencies: GenericEntityModel[] = []; 

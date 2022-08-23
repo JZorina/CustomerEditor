@@ -16,6 +16,7 @@ const CustomerEditor = () => {
     const {externalCountries, externalCurrencies} = useContext<{externalCountries:any[], externalCurrencies:GenericEntityModel[]}>(DataContext);
     const [displayEntityForm, setDisplayEntityForm] = useState<boolean>(false);
     const [entityIndex, setEntityIndex] = useState<number>(0);
+    const [selectedPrefix, setSelectedPrefix] = useState<number|undefined>(undefined);
     const [actionEndedSuccessfully, setActionResult] = useState<boolean>(false);
     const [countries, setCountries] = useState<GenericEntityModel[]>([]);
     const [currencies, setCurrencies] = useState<GenericEntityModel[]>([]);
@@ -78,11 +79,14 @@ const CustomerEditor = () => {
         setEntityIndex(entityIndex=>entityIndex+1);
         setDisplayEntityForm(false);
     }
-    const handleCountryChange  = (e:any) => {
-       setValue("country",e.target.value)
+    const handleCountryChange = (e:any) => {
+       setValue("country",e.target.value);
+       let prefix = externalCountries.filter((i:GenericEntityModel)=>i.value == e.target.value);
+       setValue("phoneNumberPrefix",prefix[0].prefix);
+
     }
     const handleCurrencyChange  = (e:any) => {
-       setValue("currency",e.target.value)
+       setValue("currency",e.target.value);
     }
     const handleNetTermChange  = (e:any) => {
        setValue(`Entities.${entityIndex}.netTermsId`,e.target.value)
@@ -125,7 +129,7 @@ const CustomerEditor = () => {
                         {currencies.map((element:GenericEntityModel) => (
                             <MenuItem
                             value={element.value}
-                            key={element.value}
+                            key={element.id}
                             >
                                 {`${element.symbol} - ${element.value}`}
                             </MenuItem>
@@ -145,7 +149,7 @@ const CustomerEditor = () => {
                                 {countries.map((element:GenericEntityModel) => (
                                 <MenuItem
                                 value={element.value}
-                                key={element.value}
+                                key={element.id}
                                 >
                                     <>
                                         <img
@@ -175,12 +179,12 @@ const CustomerEditor = () => {
                         className='prefixPhoneNumberInput' 
                         placeholder="Prefix" 
                         type='text' 
-                        defaultValue={'+972'}
+                        defaultValue={selectedPrefix}
                         {...register("phoneNumberPrefix", { required: true,maxLength:4 })} 
                         />
                         <Input 
                         className='phoneNumberInput'  
-                        placeholder="Phone number" type='phone' 
+                        placeholder="Phone number" type='tel' 
                         defaultValue={'526635487'}
                         {...register("phoneNumber", { required: true,maxLength:10})} />
                     </div>
