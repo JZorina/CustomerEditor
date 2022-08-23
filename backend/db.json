@@ -1,0 +1,59 @@
+{
+  "customers": [
+    {
+      "name": "ggg",
+      "email": "yuliaZ@appleseeds.org.il",
+      "currency": "Aruban or Dutch Guilder",
+      "state": "Ramla",
+      "phoneNumberPrefix": "44",
+      "phoneNumber": "4444",
+      "EIN": "ggg",
+      "country": "Republic of Botswana",
+      "id": 17
+    },
+    {
+      "name": "Test",
+      "email": "Test@testim.com",
+      "currency": "Bahraini Dinar",
+      "state": "test land",
+      "phoneNumberPrefix": "+972",
+      "phoneNumber": "526635487",
+      "EIN": "12-123456",
+      "country": "Tuvalu",
+      "id": 18
+    }
+  ],
+  "customersEntities": [
+    {
+      "customerId": 17,
+      "address": "Israel",
+      "paymentMethodId": 1,
+      "netTermsId": 1,
+      "VAT": 22
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": 1,
+      "value": "credit card"
+    },
+    {
+      "id": 2,
+      "value": "bank transfer"
+    }
+  ],
+  "netTerms": [
+    {
+      "id": 1,
+      "value": "no trem"
+    },
+    {
+      "id": 2,
+      "value": "Net 30"
+    },
+    {
+      "id": 3,
+      "value": "Net 60"
+    }
+  ]
+}

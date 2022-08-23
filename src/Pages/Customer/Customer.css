@@ -1,0 +1,17 @@
+.main{
+    flex-direction: column;
+    width: calc(90);
+}
+.mainButtonContainer{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 20px;
+}
+.mainListContainer{
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
