@@ -11,6 +11,7 @@ import DataContext from '../../Contexts/DataContext';
 import { GenericEntityModel } from '../../Models/GenericEntity';
 import { netTermsOptions, paymentMethodsOptions } from '../../Utils/Mocks';
 import { words } from '../../Utils/Texts';
+import { validateAmericanEIN } from '../../Utils/Functions';
 
 const CustomerEditor = () => {
     const {externalCountries, externalCurrencies} = useContext<{externalCountries:any[], externalCurrencies:GenericEntityModel[]}>(DataContext);
@@ -34,7 +35,14 @@ const CustomerEditor = () => {
   
 
     useEffect(() => {
+        const {
+            EIN,
+            state,
+            country
+          } = formResult;
         setActionResult(false);
+        if(country == 'United States of America' && EIN && EIN.length>0 && state && state.length > 0)
+            validateAmericanEIN(EIN.toString(),state);
       }, [formResult]);
 
       useEffect(()=>{
@@ -194,9 +202,10 @@ const CustomerEditor = () => {
                     <Input 
                     className='input' 
                     placeholder="EIN"  
-                    defaultValue={'12-123456'}
-                    {...register("EIN", { required: true,maxLength: 9 })} />
+                    defaultValue={'11-1111111'}
+                    {...register("EIN", { required: true, pattern:/^\d{2}\-?\d{7}$/})} />
                     <p>{errors.EIN?.type === 'required' && "EIN is required"}</p>
+                    <p>{errors.EIN?.type === 'pattern' && "EIN pattern is not valid"}</p>
                     {   
                         displayEntityForm &&
                         <div className='entityFormContainer'>
