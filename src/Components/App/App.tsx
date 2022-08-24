@@ -12,11 +12,12 @@ import { DataProvider } from '../../Contexts/DataContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { ExternalCurrency} from '../../Models/ExternalCurrency';
 import { GenericEntityModel } from '../../Models/GenericEntity';
+import { ExternalData } from '../../Models/ExternalData';
 
 function App() {
-
-  const [data, setData] = useState<{
-  externalCountries:any[], externalCurrencies:GenericEntityModel[]}>({externalCountries:[],externalCurrencies:[]});
+  let externalCountries: GenericEntityModel[]
+  let externalCurrencies: GenericEntityModel[]
+  const [data, setData] = useState<ExternalData>({externalCountries:[],externalCurrencies:[]});
   const [displaySpinner, setSpinner] = useState<boolean>(true);
   useEffect(()=>{
     initApp();
@@ -24,24 +25,29 @@ function App() {
 
   const initApp = async () => {
     if(data.externalCountries.length == 0 && data.externalCurrencies.length == 0){
-      let externalCountries: GenericEntityModel[] = []; 
       getCountries()
       .then(response => response.json())
       .then(json=>{
-        json.map((item:any,index:number)=>{
-          externalCountries.push({id:index, value: item.name.official,symbol:item.flags.svg, prefix:item.idd.root+item.idd.suffixes})
-        })
+         externalCountries = json.map((item:any,index:number)=>({
+          id:index, 
+          value: item.name.official,
+          symbol:item.flags.svg, 
+          prefix:item.idd.root+item.idd.suffixes
+        }))
+        setData({externalCountries,externalCurrencies});
       });
-      let externalCurrencies: GenericEntityModel[] = []; 
       getCurrencies()
       .then(response => response.json())
       .then(json=>{
-        json.currencies.map((item:ExternalCurrency,index:number)=>{
-          externalCurrencies.push({id:index, value: item.currency_name,symbol:item.iso})
-        })
+        externalCurrencies = json.currencies.map((item:ExternalCurrency,index:number)=>({
+          id:index, value: item.currency_name,symbol:item.iso
+        }))
+        setData({externalCountries,externalCurrencies});
+        console.log(externalCurrencies)
         setSpinner(false);
       });
-      setData({externalCountries,externalCurrencies});
+
+      
     }
   }
   return (

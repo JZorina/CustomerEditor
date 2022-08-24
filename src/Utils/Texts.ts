@@ -8,9 +8,16 @@ export const words = {
         CurrencyLabel:"Currency",
         CountryLabel:"Country",
         PaymentMethodLabel:"Payment Method",
-        NetTermsLabel:"Net Terms"
+        NetTermsLabel:"Net Terms",
+        SuccessMesage:'Oh yeah!'
     },
     general:{
         BackButtonContent:"Back"
+    },
+    states:{
+        USA:'United States of America'
+    },
+    validationErrors:{
+        
     }
 }

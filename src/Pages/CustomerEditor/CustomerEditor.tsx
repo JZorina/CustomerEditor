@@ -9,15 +9,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner';
 import DataContext from '../../Contexts/DataContext';
 import { GenericEntityModel } from '../../Models/GenericEntity';
-import { netTermsOptions, paymentMethodsOptions } from '../../Utils/Mocks';
 import { words } from '../../Utils/Texts';
 import { validateAmericanEIN } from '../../Utils/Functions';
+import { ExternalData } from '../../Models/ExternalData';
 
 const CustomerEditor = () => {
-    const {externalCountries, externalCurrencies} = useContext<{externalCountries:any[], externalCurrencies:GenericEntityModel[]}>(DataContext);
-    const [displayEntityForm, setDisplayEntityForm] = useState<boolean>(false);
-    const [entityIndex, setEntityIndex] = useState<number>(0);
-    const [selectedPrefix, setSelectedPrefix] = useState<number|undefined>(undefined);
+    const {externalCountries, externalCurrencies} = useContext<ExternalData>(DataContext);
     const [actionEndedSuccessfully, setActionResult] = useState<boolean>(false);
     const [countries, setCountries] = useState<GenericEntityModel[]>([]);
     const [currencies, setCurrencies] = useState<GenericEntityModel[]>([]);
@@ -30,9 +27,8 @@ const CustomerEditor = () => {
     let { userId } = useParams();
     const formResult = useWatch({ control });
     const  navigate = useNavigate();
-    const {general:{BackButtonContent},editorPage:{CurrencyLabel, CountryLabel, PaymentMethodLabel,NetTermsLabel }} = words;
+    const {general:{BackButtonContent},editorPage:{CurrencyLabel, CountryLabel,SuccessMesage },states:{USA}} = words;
 
-  
 
     useEffect(() => {
         const {
@@ -41,7 +37,7 @@ const CustomerEditor = () => {
             country
           } = formResult;
         setActionResult(false);
-        if(country == 'United States of America' && EIN && EIN.length>0 && state && state.length > 0)
+        if(country == USA && EIN && EIN.length>0 && state && state.length > 0)
             validateAmericanEIN(EIN.toString(),state);
       }, [formResult]);
 
@@ -55,6 +51,8 @@ const CustomerEditor = () => {
       useEffect(()=>{
         setCountries(externalCountries);
         setCurrencies(externalCurrencies);
+        console.log(externalCountries)
+        console.log(externalCurrencies)
       },[])
 
     const fetchCustomer = async (userId:number) => {
@@ -83,10 +81,7 @@ const CustomerEditor = () => {
         else await addCustomer(newCustomer);
         setActionResult(true);
     }
-    const addEntity = () => {
-        setEntityIndex(entityIndex=>entityIndex+1);
-        setDisplayEntityForm(false);
-    }
+
     const handleCountryChange = (e:any) => {
        setValue("country",e.target.value);
        let prefix = externalCountries.filter((i:GenericEntityModel)=>i.value == e.target.value);
@@ -96,13 +91,6 @@ const CustomerEditor = () => {
     const handleCurrencyChange  = (e:any) => {
        setValue("currency",e.target.value);
     }
-    const handleNetTermChange  = (e:any) => {
-       setValue(`Entities.${entityIndex}.netTermsId`,e.target.value)
-    }
-    const handlePaymentMethodChange  = (e:any) => {
-       setValue(`Entities.${entityIndex}.paymentMethodId`,e.target.value)
-    }
-
     return (
         <div className='mainEditorContainer'>
             {displaySpinner ? (
@@ -187,7 +175,7 @@ const CustomerEditor = () => {
                         className='prefixPhoneNumberInput' 
                         placeholder="Prefix" 
                         type='text' 
-                        defaultValue={selectedPrefix}
+                        defaultValue={"phoneNumberPrefix"}
                         {...register("phoneNumberPrefix", { required: true,maxLength:4 })} 
                         />
                         <Input 
@@ -206,55 +194,11 @@ const CustomerEditor = () => {
                     {...register("EIN", { required: true, pattern:/^\d{2}\-?\d{7}$/})} />
                     <p>{errors.EIN?.type === 'required' && "EIN is required"}</p>
                     <p>{errors.EIN?.type === 'pattern' && "EIN pattern is not valid"}</p>
-                    {   
-                        displayEntityForm &&
-                        <div className='entityFormContainer'>
-                        <Input className="entityFormItem" placeholder="Address" type='' {...register(`Entities.${entityIndex}.address`, { required: true })} />
-                        <FormControl fullWidth style={{width:'60%'}}>
-                        <InputLabel id="paymentMethodId">{PaymentMethodLabel}</InputLabel>
-                            <Select
-                                labelId="paymentMethodId"
-                                id="paymentMethodId_"
-                               {...register(`Entities.${entityIndex}.paymentMethodId`, { required: true })}
-                                label="Payment Method"
-                                onChange={handlePaymentMethodChange}>
-                                    {paymentMethodsOptions.map((element:GenericEntityModel) => (
-                                    <MenuItem
-                                    value={element.value}
-                                    key={element.id}
-                                    >
-                                        {element.value}
-                                    </MenuItem>
-                            ))}
-                        </Select>
-                        </FormControl>
-                         <FormControl fullWidth style={{width:'60%'}}>
-                            <InputLabel id="netTermsId">{NetTermsLabel}</InputLabel>
-                            <Select
-                                labelId="netTermsId"
-                                id="netTermsId"
-                              {...register(`Entities.${entityIndex}.netTermsId`, { required: true })}
-                                label="Net Terms"
-                                onChange={handleNetTermChange}>
-                                    {netTermsOptions.map((element:GenericEntityModel) => (
-                                    <MenuItem
-                                    value={element.value}
-                                    key={element.id}
-                                    >
-                                        {element.value}
-                                    </MenuItem>
-                            ))}
-                            </Select>
-                        </FormControl>
-                        <Input className="entityFormItem" placeholder="VAT" type='' {...register(`Entities.${entityIndex}.VAT`, { required: true })} />
-                        <Button className='entityFormItem' variant="contained" type="button" onClick = {addEntity}>Confirm Entity</Button>
-                    </div>
-                    
-                }
                 <Button className='submitButton' variant="contained" type="submit">{userId ? 'Finish Edit': 'Create'}</Button>
-                {actionEndedSuccessfully && 
+                {
+                    actionEndedSuccessfully && 
                     <>
-                    Oh yeah!
+                   {SuccessMesage}
                     </>
                 }
             </form>
