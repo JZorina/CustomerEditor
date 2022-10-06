@@ -4,21 +4,28 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import "./CustomerItem.css";
-import { words } from '../../Utils/Texts';
+import './CustomerItem.css';
+import { words } from '../../Utils/Theme/Languages/En';
 
 interface Props {
-    name:string | undefined;
-    id:number | undefined;
-    deleteCutomer :(id:number)=>void;
-    editCustomer :(id:number)=>void;
+  name: string | undefined;
+  id: number | undefined;
+  deleteCutomer: (id: number) => void;
+  editCustomer: (id: number) => void;
 }
-const CustomerItem: React.FC<Props> = ({name,id,deleteCutomer,editCustomer}) => {
+const CustomerItem: React.FC<Props> = ({
+  name,
+  id,
+  deleteCutomer,
+  editCustomer,
+}) => {
   const idValue = id ?? 0;
-  const {mainPage:{deleteButtonContent, editeButtonContent}} = words;
+  const {
+    mainPage: { deleteButtonContent, editeButtonContent },
+  } = words;
 
-  return(
-    <ListItem className='item'>
+  return (
+    <ListItem className="item">
       <ListItemAvatar>
         <Avatar
           alt={`Avatar n°${idValue + 1}`}
@@ -26,12 +33,28 @@ const CustomerItem: React.FC<Props> = ({name,id,deleteCutomer,editCustomer}) => 
         />
       </ListItemAvatar>
       <ListItemText id={idValue.toString()} primary={name} />
-      <div className='inlineButtonsContainer'>
-        <Button variant="outlined" color="error" size="small" onClick={() => deleteCutomer(idValue)}> {deleteButtonContent} </Button>
-        <Button variant="outlined" color="secondary" size="small" onClick={() => editCustomer(idValue)}> {editeButtonContent} </Button>
+      <div className="inlineButtonsContainer">
+        <Button
+          variant="outlined"
+          color="error"
+          size="small"
+          onClick={() => deleteCutomer(idValue)}
+        >
+          {' '}
+          {deleteButtonContent}{' '}
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          size="small"
+          onClick={() => editCustomer(idValue)}
+        >
+          {' '}
+          {editeButtonContent}{' '}
+        </Button>
       </div>
-  </ListItem>
-    )
+    </ListItem>
+  );
 };
 
 export default React.memo(CustomerItem);

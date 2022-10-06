@@ -1,81 +1,37 @@
 {
   "customers": [
     {
-      "name": "ggg",
-      "email": "yuliaZ@appleseeds.org.il",
+      "name": "מאור דידי",
+      "email": "didi25489@gmail.com",
       "currency": "Aruban or Dutch Guilder",
       "state": "Ramla",
-      "phoneNumberPrefix": "555",
-      "phoneNumber": "4444",
-      "EIN": "ggg",
-      "country": "Territory of the French Southern and Antarctic Lands",
-      "id": 17
+      "phoneNumber": "972526635487",
+      "EIN": "12-3456789",
+      "country": "Federal Democratic Republic of Nepal",
+      "id": 29,
+      "customersEntities": []
     },
     {
-      "name": "Test",
-      "email": "Test@testim.com",
-      "currency": "Bahraini Dinar",
-      "state": "test land",
-      "phoneNumberPrefix": "+972",
-      "phoneNumber": "526635487",
-      "EIN": "12-123456",
-      "country": "Tuvalu",
-      "id": 18
-    },
-    {
-      "name": "maor",
+      "name": "מאור דידי",
       "email": "didi25489@gmail.com",
-      "currency": "Australian Dollar",
-      "state": "validashin חלעלכלע",
-      "phoneNumberPrefix": "+972",
-      "phoneNumber": "sdsss",
-      "EIN": "0545454",
-      "country": "Republic of Kosovo",
-      "id": 19
+      "currency": "Argentine Peso",
+      "state": "Ramla",
+      "phoneNumber": "99725066354",
+      "EIN": "12-3456789",
+      "country": "Republic of Paraguay",
+      "id": 30,
+      "customersEntities": []
     },
     {
-      "name": "Test",
-      "email": "Test@testim.com",
-      "currency": "Bahraini Dinar",
-      "state": "test land",
-      "phoneNumberPrefix": "33",
-      "phoneNumber": "526635486",
-      "EIN": "12-123456",
-      "country": "Tuvalu",
-      "id": 20
-    },
-    {
-      "name": "Test",
-      "email": "Test@testim.com",
-      "currency": "Bahraini Dinar",
-      "state": "test land",
-      "phoneNumberPrefix": "33",
-      "phoneNumber": "fee",
-      "EIN": "12-123456",
-      "country": "Tuvalu",
-      "id": 21
-    },
-    {
-      "name": "Test",
-      "email": "Test@testim.com",
-      "currency": "Bahraini Dinar",
-      "state": "test land",
-      "phoneNumberPrefix": "33",
-      "phoneNumber": "fee",
-      "EIN": "12-123456",
-      "country": "Tuvalu",
-      "id": 22
-    },
-    {
-      "name": "Test",
-      "email": "Test@testim.com",
-      "currency": "Bahraini Dinar",
-      "state": "test land",
-      "phoneNumberPrefix": "33",
-      "phoneNumber": "wfrewf",
-      "EIN": "12-123456",
-      "country": "Tuvalu",
-      "id": 23
+      "name": "yul zorin",
+      "email": "yuliaZ@appleseeds.org.il",
+      "currency": "Azerbaijan Manat",
+      "country": "Republic of San Marino",
+      "state": "Ramla",
+      "EIN": "12-3456789",
+      "phoneNumber": "972526635487",
+      "id": 31,
+      "customersEntities": []
     }
   ],
   "customersEntities": [
