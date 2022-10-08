@@ -1,70 +1,15 @@
 {
   "customers": [
     {
-      "name": "מאור דידי",
-      "email": "didi25489@gmail.com",
-      "currency": "Aruban or Dutch Guilder",
-      "state": "Ramla",
-      "phoneNumber": "972526635487",
-      "EIN": "12-3456789",
-      "country": "Federal Democratic Republic of Nepal",
-      "id": 29,
-      "customersEntities": []
-    },
-    {
-      "name": "מאור דידי",
-      "email": "didi25489@gmail.com",
-      "currency": "Argentine Peso",
-      "state": "Ramla",
-      "phoneNumber": "99725066354",
-      "EIN": "12-3456789",
-      "country": "Republic of Paraguay",
-      "id": 30,
-      "customersEntities": []
-    },
-    {
-      "name": "yul zorin",
+      "name": "Yulia Zorin",
       "email": "yuliaZ@appleseeds.org.il",
-      "currency": "Azerbaijan Manat",
-      "country": "Republic of San Marino",
-      "state": "Ramla",
-      "EIN": "12-3456789",
-      "phoneNumber": "972526635487",
-      "id": 31,
-      "customersEntities": []
-    }
-  ],
-  "customersEntities": [
-    {
-      "customerId": 17,
-      "address": "Israel",
-      "paymentMethodId": 1,
-      "netTermsId": 1,
-      "VAT": 22
-    }
-  ],
-  "paymentMethods": [
-    {
-      "id": 1,
-      "value": "credit card"
-    },
-    {
-      "id": 2,
-      "value": "bank transfer"
-    }
-  ],
-  "netTerms": [
-    {
-      "id": 1,
-      "value": "no trem"
-    },
-    {
-      "id": 2,
-      "value": "Net 30"
-    },
-    {
-      "id": 3,
-      "value": "Net 60"
+      "currency": "Bulgarian Lev",
+      "country": "Republic of Madagascar",
+      "state": "massachusetts",
+      "phoneNumber": "+261",
+      "EIN": "103456789",
+      "phoneNumberPrefix": "+261",
+      "id": 2
     }
   ]
 }

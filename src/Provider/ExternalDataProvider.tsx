@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { fetchExternalData } from '../Apis/ExternalApiHelpers';
 import LoadingSpinner from '../Components/LoadingSpinner/LoadingSpinner';
 import { ExternalData } from '../Models/Externals';
-import { fetchExternalData } from '../Utils/Functions';
 
 const DataContext = createContext<ExternalData>({
   externalCountries: null,

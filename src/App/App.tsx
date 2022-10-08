@@ -7,7 +7,6 @@ import CustomerEditor from '../Pages/CustomerEditor/CustomerEditor';
 
 function App() {
   return (
-    // <React.StrictMode>
     <BrowserRouter>
       <ExternalDataProvider>
         <Routes>
@@ -17,7 +16,6 @@ function App() {
         </Routes>
       </ExternalDataProvider>
     </BrowserRouter>
-    // </React.StrictMode>
   );
 }
 

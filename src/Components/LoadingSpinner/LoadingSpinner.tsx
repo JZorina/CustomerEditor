@@ -8,4 +8,4 @@ const LoadingSpinner = () => {
     </div>
   );
 };
-export default React.memo(LoadingSpinner);
+export default LoadingSpinner;

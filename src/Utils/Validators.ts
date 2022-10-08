@@ -1,13 +1,10 @@
-import { getCountries, getCurrencies } from '../Apis/Api';
-import { Currency } from '../Models/Externals';
-
-export function validateAmericanEIN(value: string, state: string) {
-  let [country] = value.split('-');
+export function validateAmericanEIN(value: any, state: string) {
+  let [first, second] = [...value];
   let inputState = state?.toLowerCase().trim();
   if (inputState) {
     return (
       Object.keys(states).includes(inputState) &&
-      states[inputState].includes(country)
+      states[inputState].includes(first + second)
     );
   }
   return false;
@@ -110,38 +107,3 @@ const states: any = {
   internet: ['20', '26', '27', '45', '46', '47', '81'],
   sba: ['31'],
 };
-
-function fetchCountries() {
-  return getCountries()
-    .then((response) => response.json())
-    .then((countries) =>
-      countries.map((item: any, index: number) => ({
-        id: index,
-        value: item.name.official,
-        symbol: item.flags.svg,
-        prefix: item.idd.root + item.idd.suffixes,
-      })),
-    );
-}
-
-function fetchCurrencies() {
-  return getCurrencies()
-    .then((response) => response.json())
-    .then((json) =>
-      json.currencies.map((item: any, index: number) => ({
-        id: index,
-        value: item.currency_name,
-        symbol: item.iso,
-        prefix: '',
-      })),
-    );
-}
-
-export function fetchExternalData() {
-  return Promise.all([fetchCountries(), fetchCurrencies()]).then(
-    ([externalCountries, externalCurrencies]) => ({
-      externalCountries,
-      externalCurrencies,
-    }),
-  );
-}

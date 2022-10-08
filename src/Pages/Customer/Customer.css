@@ -1,17 +1,18 @@
-.main{
-    flex-direction: column;
-    width: calc(90);
+.main {
+  flex-direction: column;
+  width: 90%;
 }
-.mainButtonContainer{
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    padding: 20px;
+.mainButtonContainer {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 20px;
 }
-.mainListContainer{
-    width: 400px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+.mainListContainer {
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: red;
 }

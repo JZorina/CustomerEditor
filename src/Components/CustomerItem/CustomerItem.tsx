@@ -9,9 +9,9 @@ import { words } from '../../Utils/Theme/Languages/En';
 
 interface Props {
   name: string | undefined;
-  id: number | undefined;
-  deleteCutomer: (id: number) => void;
-  editCustomer: (id: number) => void;
+  id: string | undefined;
+  deleteCutomer: (id: string) => void;
+  editCustomer: (id: string) => void;
 }
 const CustomerItem: React.FC<Props> = ({
   name,
@@ -19,7 +19,7 @@ const CustomerItem: React.FC<Props> = ({
   deleteCutomer,
   editCustomer,
 }) => {
-  const idValue = id ?? 0;
+  const idValue = id ?? '0';
   const {
     mainPage: { deleteButtonContent, editeButtonContent },
   } = words;

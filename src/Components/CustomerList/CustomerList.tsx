@@ -5,8 +5,8 @@ import List from '@mui/material/List';
 
 interface Props {
   allCustomers: Customer[] | null;
-  deleteCustomer: (id: number) => void;
-  editCustomer: (id: number) => void;
+  deleteCustomer: (id: string) => void;
+  editCustomer: (id: string) => void;
 }
 const CustomerList: React.FC<Props> = ({
   allCustomers,
@@ -14,7 +14,7 @@ const CustomerList: React.FC<Props> = ({
   deleteCustomer,
 }) => {
   return (
-    <div className="list">
+    <>
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {allCustomers?.map((customer) => {
           return (
@@ -28,7 +28,7 @@ const CustomerList: React.FC<Props> = ({
           );
         })}
       </List>
-    </div>
+    </>
   );
 };
 

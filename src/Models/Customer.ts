@@ -1,7 +1,6 @@
 export interface Customer {
-  id?: number;
+  id?: string;
   name?: string;
-  avatar?: string;
   email?: string;
   currency?: string;
   country?: string;
@@ -9,14 +8,4 @@ export interface Customer {
   phoneNumberPrefix?: string;
   phoneNumber?: string;
   EIN?: string;
-  Entities?: CustomerEntity[];
-}
-
-export interface CustomerEntity {
-  id?: number;
-  customerId?: number;
-  address?: string;
-  paymentMethodId?: number;
-  netTermsId?: number;
-  VAT?: number;
 }
