@@ -12,14 +12,18 @@ In the project directory\backend, you can run:
 
 ### `json-server -p 4000 db.json`
 
-link for installing json-server: https://www.npmjs.com/package/json-server \
+Link for installing json-server: https://www.npmjs.com/package/json-server \
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## sources
+## Sources
 
-^\d{2}\-?\d{7}$
+EIN regex: ^\d{2}\-?\d{7}$ by \
 https://stackoverflow.com/questions/4242433/regex-for-ein-number-and-ssn-number-format-in-jquery
 
 max limit to international phone number by
 https://en.wikipedia.org/wiki/E.164
+
+## Comment
+
+The currency API auth token is valid for only 7 days.

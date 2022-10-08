@@ -7,15 +7,23 @@ export const words = {
   editorPage: {
     currencyLabel: 'Currency',
     countryLabel: 'Country',
-    paymentMethodLabel: 'Payment Method',
-    netTermsLabel: 'Net Terms',
-    successMesage: 'Oh yeah!',
+    edit: 'Finish Edit',
+    create: 'Create',
   },
   general: {
     backButtonContent: 'Back',
+    notValid: 'Not valid',
   },
-  states: {
-    USA: 'United States of America',
+  validations: {
+    requiredField: 'Field required',
+    FifteenMaxLength: 'Maximum length is 15',
+    tenMaxLength: 'Maximum length is 15',
   },
-  validationErrors: {},
+  errorMessages: {
+    format: 'incorrect format',
+  },
+  placeHolders: {
+    phone: 'Phone Number with no prefix',
+    e_mail: 'you@example.com',
+  },
 };

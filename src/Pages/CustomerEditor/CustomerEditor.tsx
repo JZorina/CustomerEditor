@@ -35,8 +35,11 @@ export default function CustomerEditor() {
   const formResult = useWatch({ control });
 
   const {
-    general: { backButtonContent },
-    editorPage: { currencyLabel, countryLabel },
+    general: { backButtonContent, notValid },
+    editorPage: { currencyLabel, countryLabel, create, edit },
+    validations: { requiredField, FifteenMaxLength, tenMaxLength },
+    errorMessages: { format },
+    placeHolders: { phone, e_mail },
   } = words;
 
   useEffect(() => {
@@ -55,7 +58,7 @@ export default function CustomerEditor() {
     return EIN && state
       ? validateAmericanEIN(EIN.toString(), state)
         ? undefined
-        : 'Not valid'
+        : notValid
       : undefined;
   };
 
@@ -115,19 +118,19 @@ export default function CustomerEditor() {
           type="text"
           placeholder="Name"
           {...register('name', {
-            required: 'Field required',
+            required: requiredField,
           })}
           errors={errors.name}
         />
 
         <BasicInput
           type="text"
-          placeholder="you@example.com"
+          placeholder={e_mail}
           {...register('email', {
-            required: 'Field required',
+            required: requiredField,
             pattern: {
               value: /^\S+@\S+$/i,
-              message: 'Email not in correct format',
+              message: format,
             },
           })}
           errors={errors.email}
@@ -135,7 +138,7 @@ export default function CustomerEditor() {
 
         <BasicSelect
           {...register('currency', {
-            required: 'Field required',
+            required: requiredField,
           })}
           id="currency"
           label={currencyLabel}
@@ -148,7 +151,7 @@ export default function CustomerEditor() {
         <BasicSelect
           id="country"
           label={countryLabel}
-          {...register('country', { required: 'Field required' })}
+          {...register('country', { required: requiredField })}
           errors={errors.country}
           renderItems={renderCountryItems}
           onChange={updateCountry}
@@ -159,10 +162,10 @@ export default function CustomerEditor() {
 
         <BasicInput
           type="tel"
-          placeholder="Phone Number with no prefix"
+          placeholder={phone}
           {...register('phoneNumber', {
-            required: 'Field required',
-            maxLength: { value: 15, message: 'Maximum length is 15' },
+            required: requiredField,
+            maxLength: { value: 15, message: FifteenMaxLength },
           })}
           errors={errors.phoneNumber}
         />
@@ -171,17 +174,17 @@ export default function CustomerEditor() {
           type="text"
           placeholder="EIN"
           {...register('EIN', {
-            maxLength: { value: 10, message: 'Maximum length is 10' },
+            maxLength: { value: 10, message: tenMaxLength },
             pattern: {
               value: /^\d{2}\-?\d{7}$/i,
-              message: 'EIN not in correct format',
+              message: format,
             },
             validate: isEIN,
           })}
           errors={errors.EIN}
         />
         <Button className="submitButton" variant="contained" type="submit">
-          {userId ? 'Finish Edit' : 'Create'}
+          {userId ? edit : create}
         </Button>
       </form>
       <Button variant="outlined" onClick={goBack}>
